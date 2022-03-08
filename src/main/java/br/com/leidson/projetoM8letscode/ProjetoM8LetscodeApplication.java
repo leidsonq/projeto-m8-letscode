@@ -24,5 +24,7 @@ public class ProjetoM8LetscodeApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		Rebelde rebelde = new Rebelde(null,"Leidson",33, "Masculino");
 		rebeldeRepository.saveAll(Arrays.asList(rebelde));
+
+
 	}
 }
