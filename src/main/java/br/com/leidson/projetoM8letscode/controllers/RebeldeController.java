@@ -1,7 +1,6 @@
 package br.com.leidson.projetoM8letscode.controllers;
 
 import br.com.leidson.projetoM8letscode.domain.Rebelde;
-import br.com.leidson.projetoM8letscode.services.LocalizacaoService;
 import br.com.leidson.projetoM8letscode.services.RebeldeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,9 +17,6 @@ public class RebeldeController {
     @Autowired
     RebeldeService service;
 
-    @Autowired
-    LocalizacaoService localizacaoService;
-
     @GetMapping("/{id}")
     public ResponseEntity<Optional<Rebelde>> detalhesRebelde(@PathVariable String id) throws Exception {
         Integer idd = Integer.parseInt(id);
@@ -36,5 +32,16 @@ public class RebeldeController {
         rebelde = service.insert(rebelde);
         URI uri = uriComponentsBuilder.path("/rebelde/{id}").buildAndExpand(rebelde.getId()).toUri();
         return ResponseEntity.created(uri).build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Rebelde> atualizaRebelde(
+            @PathVariable String id,
+            @RequestBody Rebelde rebelde
+    ) throws Exception {
+        Integer idd = Integer.parseInt(id);
+        rebelde.setId(idd);
+        rebelde = service.update(rebelde);
+        return ResponseEntity.ok().build();
     }
 }

@@ -23,5 +23,23 @@ public class RebeldeService {
         return obj;
     }
 
+    public Rebelde update(Rebelde obj) {
+        Optional<Rebelde> newObj = find(obj.getId());
+        Rebelde rebelde = new Rebelde();
+        if (newObj.isPresent()) {
+           rebelde = newObj.get();
+        }
+        updateData (rebelde, obj);
+        return repo.save(rebelde);
+    }
+
+    private void updateData (Rebelde newObj, Rebelde obj) {
+        newObj.setGenero (obj.getGenero());
+        newObj.setIdade(obj.getIdade());
+        newObj.setInventario(obj.getInventario());
+        newObj.setLocalizacao(obj.getLocalizacao());
+        newObj.setNome(obj.getNome());
+    }
+
 
 }

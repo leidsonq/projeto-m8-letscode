@@ -59,7 +59,7 @@ public class ProjetoM8LetscodeApplication implements CommandLineRunner {
 		itemInventarioRepository.saveAll(Arrays.asList(itemIventario1, itemIventario2, itemIventario3, itemIventario4));
 
 
-		Localizacao localizacao = new Localizacao(null, 100, 80, "Mexico");
+		Localizacao localizacao = new Localizacao(null, 100, 80, "Mexico", null);
 		localizacaoRepository.saveAll(Arrays.asList(localizacao));
 
 
