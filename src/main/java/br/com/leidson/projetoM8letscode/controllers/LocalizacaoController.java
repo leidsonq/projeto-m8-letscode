@@ -36,4 +36,15 @@ public class LocalizacaoController {
         service.atualizarLocalizacaoRebelde(localizacao.getRebelde().getId(),localizacao.getId());
         return ResponseEntity.created(uri).build();
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Localizacao> atualizarLocalizacao(
+            @Valid @PathVariable String id,
+            @RequestBody Localizacao localizacao
+    ) throws Exception {
+        Integer idd = Integer.parseInt(id);
+        localizacao.setId(idd);
+        localizacao = service.atualizar(localizacao);
+        return ResponseEntity.ok().build();
+    }
 }

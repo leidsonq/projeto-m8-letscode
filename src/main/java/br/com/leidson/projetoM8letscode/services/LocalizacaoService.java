@@ -41,4 +41,20 @@ public class LocalizacaoService {
         novoRebelde.setLocalizacao(novaLocalizacao);
         rebeldeService.atualizar(novoRebelde);
     }
+
+    public Localizacao atualizar(Localizacao obj) {
+        Optional<Localizacao> newObj = buscar(obj.getId());
+        Localizacao localizacao = new Localizacao();
+        if (newObj.isPresent()) {
+            localizacao = newObj.get();
+        }
+        atualizarDados(localizacao, obj);
+        return repo.save(localizacao);
+    }
+
+    private void atualizarDados(Localizacao newObj, Localizacao obj) {
+        newObj.setLatitude(obj.getLatitude());
+        newObj.setLongitude(obj.getLongitude());
+        newObj.setNome(obj.getNome());
+    }
 }
