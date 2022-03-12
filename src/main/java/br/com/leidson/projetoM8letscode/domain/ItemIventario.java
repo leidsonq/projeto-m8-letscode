@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,8 +23,8 @@ public class ItemIventario {
     private Item item;
     private int quantidade;
 
-    @JsonIgnore
     @ManyToOne
+    @NotNull
     @JoinColumn(name = "inventario_id")
     private Inventario inventario;
 }

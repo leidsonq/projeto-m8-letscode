@@ -27,7 +27,7 @@ public class LocalizacaoController {
     }
 
     @PostMapping
-    public ResponseEntity<Rebelde> cadastrarLocalizacao(
+    public ResponseEntity<Localizacao> cadastrarLocalizacao(
             @Valid @RequestBody Localizacao localizacao,
             UriComponentsBuilder uriComponentsBuilder
     ){
