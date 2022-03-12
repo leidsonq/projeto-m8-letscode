@@ -21,7 +21,7 @@ public class InventarioController {
     @GetMapping("/{id}")
     public ResponseEntity<Optional<Inventario>> detalhesCliente(@PathVariable String id) throws Exception {
         Integer idd = Integer.parseInt(id);
-        Optional<Inventario> obj = service.find(idd);
+        Optional<Inventario> obj = service.buscar(idd);
         return ResponseEntity.ok().body(obj);
     }
 }

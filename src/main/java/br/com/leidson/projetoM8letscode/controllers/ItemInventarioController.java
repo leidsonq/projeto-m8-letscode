@@ -1,7 +1,6 @@
 package br.com.leidson.projetoM8letscode.controllers;
 
 
-import br.com.leidson.projetoM8letscode.domain.Item;
 import br.com.leidson.projetoM8letscode.domain.ItemIventario;
 import br.com.leidson.projetoM8letscode.services.ItemIventarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
@@ -27,7 +25,7 @@ public class ItemInventarioController {
             @RequestBody ItemIventario itemIventario,
             UriComponentsBuilder uriComponentsBuilder
     ){
-        itemIventario = service.insert(itemIventario);
+        itemIventario = service.inserir(itemIventario);
         URI uri = uriComponentsBuilder.path("/iteminventario/{id}").buildAndExpand(itemIventario.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }

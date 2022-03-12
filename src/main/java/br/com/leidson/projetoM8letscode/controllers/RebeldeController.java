@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.Optional;
 
@@ -20,16 +21,16 @@ public class RebeldeController {
     @GetMapping("/{id}")
     public ResponseEntity<Optional<Rebelde>> detalhesRebelde(@PathVariable String id) throws Exception {
         Integer idd = Integer.parseInt(id);
-        Optional<Rebelde> obj = service.find(idd);
+        Optional<Rebelde> obj = service.buscar(idd);
         return ResponseEntity.ok().body(obj);
     }
 
     @PostMapping
     public ResponseEntity<Rebelde> cadastrarRebelde(
-            @RequestBody Rebelde rebelde,
+            @Valid @RequestBody Rebelde rebelde,
             UriComponentsBuilder uriComponentsBuilder
     ){
-        rebelde = service.insert(rebelde);
+        rebelde = service.inserir(rebelde);
         URI uri = uriComponentsBuilder.path("/rebelde/{id}").buildAndExpand(rebelde.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
@@ -41,7 +42,7 @@ public class RebeldeController {
     ) throws Exception {
         Integer idd = Integer.parseInt(id);
         rebelde.setId(idd);
-        rebelde = service.update(rebelde);
+        rebelde = service.atualizar(rebelde);
         return ResponseEntity.ok().build();
     }
 }

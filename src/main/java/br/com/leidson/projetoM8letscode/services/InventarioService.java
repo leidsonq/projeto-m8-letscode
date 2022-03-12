@@ -12,12 +12,12 @@ public class InventarioService {
     @Autowired
     private InventarioRepository repo;
 
-    public Inventario insert(Inventario obj) {
+    public Inventario inserir(Inventario obj) {
         obj.setId(null);
         return repo.save(obj);
     }
 
-    public Optional<Inventario> find(Integer id) {
+    public Optional<Inventario> buscar(Integer id) {
         Optional<Inventario> obj = repo.findById(id);
         return obj;
     }

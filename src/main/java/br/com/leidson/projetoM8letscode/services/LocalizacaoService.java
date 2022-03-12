@@ -14,13 +14,31 @@ public class LocalizacaoService {
     @Autowired
     private LocalizacaoRepository repo;
 
-    public Localizacao insert(Localizacao obj) {
+    @Autowired
+    RebeldeService rebeldeService;
+
+    public Localizacao inserir(Localizacao obj) {
         obj.setId(null);
         return repo.save(obj);
     }
 
-    public Optional<Localizacao> find(Integer id) {
+    public Optional<Localizacao> buscar(Integer id) {
         Optional<Localizacao> obj = repo.findById(id);
         return obj;
+    }
+
+    public void atualizarLocalizacaoRebelde (Integer idRebelde, Integer idLocalizacao) {
+        Optional<Rebelde> rebelde = rebeldeService.buscar(idRebelde);
+        Rebelde novoRebelde = new Rebelde();
+        if(rebelde.isPresent()){
+            novoRebelde = rebelde.get();
+        }
+        Optional<Localizacao> localizacao = buscar(idLocalizacao);
+        Localizacao novaLocalizacao = new Localizacao();
+        if (localizacao.isPresent()) {
+            novaLocalizacao = localizacao.get();
+        }
+        novoRebelde.setLocalizacao(novaLocalizacao);
+        rebeldeService.atualizar(novoRebelde);
     }
 }

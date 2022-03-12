@@ -10,7 +10,7 @@ public class ItemService {
     @Autowired
     private ItemRepository repo;
 
-    public Item insert(Item obj) {
+    public Item inserir(Item obj) {
         obj.setId(null);
         return repo.save(obj);
     }

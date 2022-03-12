@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -18,11 +19,13 @@ public class Rebelde {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @NotNull
     private String nome;
+    @NotNull
     private int idade;
+    @NotNull
     private String genero;
     private boolean traidor = false;
-    private int traicao = 0;
 
     @OneToOne
     @JoinColumn (name = "localizacao_id")
